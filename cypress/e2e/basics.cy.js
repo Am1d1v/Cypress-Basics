@@ -8,7 +8,10 @@ describe('Tasks page', () => {
     cy.visit('http://localhost:5173/');
 
     // Get the image inside main-header
-    cy.get('.main-header img');
+    //cy.get('.main-header img');
+
+    // Find the image inside main-header
+    cy.get('.main-header').find('img');
   });
 
   it('should display the page title', () => {
