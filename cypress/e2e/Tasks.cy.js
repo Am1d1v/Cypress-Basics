@@ -26,6 +26,12 @@ describe('Tasks management', () => {
         // Close modal by clicking on the backdrop
         cy.contains('Add Task').click();
         cy.get('.backdrop').click({force: true});
+
+        // Check that backdrop does not exist after it was clicked
+        cy.get('.backdrop').should('not.exist');
+
+        // Check that dialog element does not exist after backdrop was clicked
+        cy.get('dialog.modal').should('not.exist');
         
     });
 
