@@ -1,5 +1,11 @@
 describe('template spec', () => {
+
   it('passes', () => {
-    cy.visit('https://example.cypress.io')
+    // Visit a page
+    cy.visit('http://localhost:5173/');
+
+    // Search for a certain element
+    cy.get('li').should('have.length', 6);
   })
+
 })
