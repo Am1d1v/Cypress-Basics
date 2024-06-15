@@ -74,4 +74,17 @@ describe('Tasks management', () => {
 
     });
 
+    it("should display error message that some task's input fields is empty", () => {
+        cy.visit('http://localhost:5173/');
+
+        // Open modal window
+        cy.contains('Add Task').click();
+
+        // Submit task by clicking on "Add Task" button
+        cy.get('dialog.modal').contains('Add Task').click();
+
+        // Check that warning message appears if title/summary input fields are empty
+        cy.get("dialog.modal p.error-message").contains('Please provide values for task title, summary and category!');
+    });
+
 });
