@@ -14,6 +14,11 @@ describe('Tasks management', () => {
         // Close modal by clicking on the "Cancel" button
         cy.contains('Cancel').click();
 
+        // Check that backdrop does not exist after "Cancel" button was clicked
+        cy.get('.backdrop').should('not.exist');
+
+        // Check that dialog element does not exist after "Cancel" button was clicked
+        cy.get('dialog.modal').should('not.exist');
         
     });
 
@@ -33,6 +38,20 @@ describe('Tasks management', () => {
         // Check that dialog element does not exist after backdrop was clicked
         cy.get('dialog.modal').should('not.exist');
         
+    });
+
+    it('should create a new task', () => {
+        cy.visit('http://localhost:5173/');
+
+        // Open modal window
+        cy.contains('Add Task').click();
+
+        // Select title input and then type data into it
+        cy.get('#title').type('Title 1');
+
+        // Select summary input and then type data into it
+        cy.get('#summary').type('Some description information');
+
     });
 
 });
