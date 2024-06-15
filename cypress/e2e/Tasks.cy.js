@@ -52,6 +52,24 @@ describe('Tasks management', () => {
         // Select summary input and then type data into it
         cy.get('#summary').type('Some description information');
 
+        // Submit task by clikcing on "Add Task" button
+        cy.contains('Add Task').click();
+
+        // Check that element with class "task-list" was created
+        cy.get('ul.task-list'); 
+
+        // Check task-list contains li with class "task"
+        cy.get('ul.task-list li.task'); 
+
+        // Check task has default priority
+        cy.get('ul.task-list li.task').contains('🔵'); 
+
+        // Check that task title is not empty
+        cy.get('ul.task-list li.task div h2').should('have.length.above', 0);
+
+        // Check that task summary(description) is not empty
+        cy.get('ul.task-list li.task div p').should('have.length.above', 0);
+
     });
 
 });
