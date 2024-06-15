@@ -175,10 +175,10 @@ describe('Tasks management', () => {
         cy.contains('Add Task').click();
 
         // Select title input and then type data into it
-        cy.get('#title').type('Title 2');
+        cy.get('#title').type('Title 3');
 
         // Select summary input and then type data into it
-        cy.get('#summary').type('Description 2');
+        cy.get('#summary').type('Description 3');
 
         // Submit task by clicking on "Add Task" button
         cy.get('dialog.modal').contains('Add Task').click();
