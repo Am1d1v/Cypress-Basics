@@ -87,7 +87,7 @@ describe('Tasks management', () => {
         cy.get("dialog.modal p.error-message").contains('Please provide values for task title, summary and category!');
     });
 
-    it.only('should filter tasks', () => {
+    it('should filter tasks', () => {
         cy.visit('http://localhost:5173/');
 
         // Open modal window
@@ -114,7 +114,7 @@ describe('Tasks management', () => {
         // Select urgent in category filter
         cy.get('select#filter').select('urgent');
 
-        // Check that creater earlier task exists
+        // Check that created earlier task exists
         cy.get('.task').should('have.length.above', 0);
 
         // Select low in category filter
@@ -122,6 +122,73 @@ describe('Tasks management', () => {
 
         // Check that the task with urgent priority doesn't appears in others filter categories but 'All'
         cy.get('.task').should('have.length', 0); 
+    });
+
+    it.only('should add multiple tasks', () => {
+        cy.visit('http://localhost:5173/');
+
+        // Creating 1st task
+        // Open modal window
+        cy.contains('Add Task').click();
+
+        // Select title input and then type data into it
+        cy.get('#title').type('Title 1');
+
+        // Select summary input and then type data into it
+        cy.get('#summary').type('Description 1');
+
+        // Submit task by clicking on "Add Task" button
+        cy.get('dialog.modal').contains('Add Task').click();
+
+        // Check that element with class "task-list" was created
+        cy.get('ul.task-list'); 
+
+        // Check that the task list contains 1 element
+        cy.get('.task').should('have.length', 1);
+
+        // Check that it is the first created task
+        cy.get('.task').eq(0)
+
+
+        // Creating 2nd task
+        // Open modal window
+        cy.contains('Add Task').click();
+
+        // Select title input and then type data into it
+        cy.get('#title').type('Title 2');
+
+        // Select summary input and then type data into it
+        cy.get('#summary').type('Description 2');
+
+        // Submit task by clicking on "Add Task" button
+        cy.get('dialog.modal').contains('Add Task').click();
+
+        // Check that the task list contains 2 element2
+        cy.get('.task').should('have.length', 2);
+
+        // Check that the 2nd task goes only after 1st
+        cy.get('.task').eq(1)
+
+
+        // Creating 3rd task
+        // Open modal window
+        cy.contains('Add Task').click();
+
+        // Select title input and then type data into it
+        cy.get('#title').type('Title 2');
+
+        // Select summary input and then type data into it
+        cy.get('#summary').type('Description 2');
+
+        // Submit task by clicking on "Add Task" button
+        cy.get('dialog.modal').contains('Add Task').click();
+
+        // Check that the task list contains 3 element
+        cy.get('.task').should('have.length', 3);
+
+        // Check that the 3rd task goes only after 2nd
+        cy.get('.task').eq(2)
+
     });
 
 });
