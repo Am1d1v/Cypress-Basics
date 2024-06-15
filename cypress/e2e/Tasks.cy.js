@@ -52,8 +52,10 @@ describe('Tasks management', () => {
         // Select summary input and then type data into it
         cy.get('#summary').type('Some description information');
 
-        // Submit task by clikcing on "Add Task" button
-        cy.contains('Add Task').click();
+        // Submit task by clicking on "Add Task" button
+        //cy.contains('Add Task').click();
+        cy.get('dialog.modal').contains('Add Task').click();
+        //cy.get('dialog.modal form p.actions button:submit').click();
 
         // Check that element with class "task-list" was created
         cy.get('ul.task-list'); 
